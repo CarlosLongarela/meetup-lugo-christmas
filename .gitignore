@@ -1,0 +1,5 @@
+node_modules
+package-lock.json
+/.cosine
+/.devcontainer/logs/setup.log
+.cosine
