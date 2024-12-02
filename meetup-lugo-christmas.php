@@ -1,10 +1,12 @@
 <?php
 /**
- * Plugin Name: Generador de Felicitaciones Navideñas
- * Description: Plugin para crear felicitaciones navideñas personalizadas
+ * Plugin Name: Christmas Greeting Generator
+ * Description: Plugin to create personalized Christmas cards
  * Version: 1.0
  * Author: Meetup WordPress Lugo
- * Author URI: https://meetup.com/WordPress-Lugo
+ * Author URI: https://wplugo.eu/
+ * Text Domain: mwl_christmas
+ * Domain Path: /languages
  *
  * @package mwl_christmas
  */
@@ -18,6 +20,14 @@ define( 'MWLC_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MWLC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'MWLC_VERSION', '1.0.0' );
 define( 'MWLC_IMAGES_COUNT', 8 );
+
+/**
+ * Load plugin textdomain.
+ */
+function mwlc_load_textdomain() {
+	load_plugin_textdomain( 'mwl_christmas', false, MWLC_PLUGIN_PATH . 'languages' );
+}
+add_action( 'init', 'mwlc_load_textdomain' );
 
 /**
  * Enqueue scripts and styles.
