@@ -168,11 +168,6 @@ function mwlc_generate_greeting() {
 	// Merge mask with original image.
 	imagecopy( $image, $mask, 0, 0, 0, 0, $width, $height );
 
-	// Obtain dimensions of text.
-	//$bbox        = imagettfbbox( $font_size, 0, $font_path, $text );
-	//$text_width  = $bbox[2] - $bbox[0];
-	//$text_height = $bbox[1] - $bbox[7];
-
 	// Split text into lines.
 	$lines = explode( "\n", $text );
 
