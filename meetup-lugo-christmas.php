@@ -169,16 +169,36 @@ function mwlc_generate_greeting() {
 	imagecopy( $image, $mask, 0, 0, 0, 0, $width, $height );
 
 	// Obtain dimensions of text.
-	$bbox        = imagettfbbox( $font_size, 0, $font_path, $text );
-	$text_width  = $bbox[2] - $bbox[0];
-	$text_height = $bbox[1] - $bbox[7];
+	//$bbox        = imagettfbbox( $font_size, 0, $font_path, $text );
+	//$text_width  = $bbox[2] - $bbox[0];
+	//$text_height = $bbox[1] - $bbox[7];
 
-	// Center text.
-	$x = ( $width - $text_width ) / 2;
-	$y = ( $height + $text_height ) / 2;
+	// Split text into lines.
+	$lines = explode( "\n", $text );
 
-	// Add text.
-	imagettftext( $image, $font_size, 0, $x, $y, $color, $font_path, $text );
+	// Calculate total height of all lines.
+	$total_height = 0;
+	$line_heights = array();
+	$line_widths  = array();
+
+	foreach ( $lines as $line ) {
+		$bbox           = imagettfbbox( $font_size, 0, $font_path, $line );
+		$line_heights[] = $bbox[1] - $bbox[7];
+		$line_widths[]  = $bbox[2] - $bbox[0];
+		$total_height  += ( $bbox[1] - $bbox[7] ) * 1.5; // 1.5 for line spacing
+	}
+
+	// Y position (from where to start drawing).
+	$y = ( $height - $total_height) / 2;
+
+	// Draw every line.
+	foreach ( $lines as $i => $line ) {
+		// Center every line horizontally.
+		$x = ( $width - $line_widths[ $i ] ) / 2;
+
+		// Draw the line.
+		imagettftext( $image, $font_size, 0, $x, $y + ( $i * $line_heights[ $i ] * 1.5 ), $color, $font_path, $line );
+	}
 
 	// Save image temporarily.
 	$temp_file = wp_upload_dir()['path'] . '/temp_greeting_' . time() . '.jpg';
