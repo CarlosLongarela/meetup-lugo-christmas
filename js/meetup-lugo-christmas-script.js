@@ -12,6 +12,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	const show_email_btn    = document.getElementById( 'show-email' );
 	const send_email_btn    = document.getElementById( 'send-email' );
 	const email_input       = document.getElementById( 'email-recipient' );
+	const details_templates = document.getElementById( 'details-templates' );
 	let current_image_url   = null;
 	let current_image_path  = null;
 
@@ -26,7 +27,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 		setTimeout( () => {
 			message_el.remove();
-		}, 5000 );
+		}, 10000 );
 	}
 
 	// Template selection.
@@ -87,9 +88,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				// Show preview container and update download button
 				preview_container.style.display = 'block';
 				download_btn.href               = data.data.url;
-				show_email_btn.style.display    = 'block';
+				show_email_btn.style.display    = 'inline-block';
 				current_image_url               = data.data.url;
 				current_image_path              = data.data.path;
+				details_templates.open          = false;
 
 			} else {
 				throw new Error( christmas_ajax_object.txt_error );
@@ -135,7 +137,6 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	// Show/hide email form
 	show_email_btn.addEventListener( 'click', () => {
 		email_form.style.display     = email_form.style.display === 'none' ? 'block' : 'none';
-		send_email_btn.style.display = email_form.style.display === 'block' ? 'block' : 'none';
 	} );
 
 	// Send email

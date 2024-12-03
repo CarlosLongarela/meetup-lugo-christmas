@@ -73,10 +73,16 @@
 }
 
 #email-form input[type="email"],
-#email-form input[type="text"] {
+#email-form input[type="text"],
+#email-form textarea{
 	width: 100%;
 	padding: 8px;
 	margin-top: 5px;
+}
+
+.sumary-title {
+	display: inline-block;
+	cursor: pointer;
 }
 
 .success-message,

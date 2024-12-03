@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'MWLC_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MWLC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'MWLC_VERSION', '1.0.0' );
+define( 'MWLC_VERSION', '1.2.0' );
 define( 'MWLC_IMAGES_COUNT', 9 );
 
 /**
@@ -105,11 +105,11 @@ function mwlc_admin_page() {
 
 				<div class="form-group">
 					<label for="email-message"><?php esc_html_e( 'Additional Message (optional)', 'mwl_christmas' ); ?>:</label>
-					<textarea id="email-message" name="email_message" rows="3"></textarea>
+					<textarea id="email-message" name="email_message" rows="4"></textarea>
 				</div>
 
 				<div class="form-group">
-					<button id="send-email" class="button button-primary" style="display: none;"><?php esc_html_e( 'Send Greeting', 'mwl_christmas' ); ?></button>
+					<button id="send-email" class="button button-primary"><?php esc_html_e( 'Send Greeting', 'mwl_christmas' ); ?></button>
 				</div>
 			</div>
 
@@ -119,31 +119,34 @@ function mwlc_admin_page() {
 			</div>
 
 			<div class="form-group">
-				<p><strong><?php esc_html_e( 'Select a template', 'mwl_christmas' ); ?>:</strong></p>
-				<div class="grid-template">
-					<?php
-					for ( $i = 1; $i <= MWLC_IMAGES_COUNT; $i++ ) {
-						// Check if image exists.
-						$image_path = MWLC_PLUGIN_PATH . 'images/template-' . $i . '.jpg';
-						$image_url  = MWLC_PLUGIN_URL . 'images/template-' . $i . '.jpg';
+				<details id="details-templates" open>
+					<summary><h2 class="sumary-title"><?php esc_html_e( 'Select a template', 'mwl_christmas' ); ?>:</h2></summary>
 
-						if ( file_exists( $image_path ) ) {
-							echo '<div class="item-template">';
-							// phpcs:ignore
-							echo '<img src="' . $image_url . '" alt="Template number ' . $i . ' " data-id="' . $i . '" />';
-							echo '</div>';
+					<div class="grid-template">
+						<?php
+						for ( $i = 1; $i <= MWLC_IMAGES_COUNT; $i++ ) {
+							// Check if image exists.
+							$image_path = MWLC_PLUGIN_PATH . 'images/template-' . $i . '.jpg';
+							$image_url  = MWLC_PLUGIN_URL . 'images/template-' . $i . '.jpg';
+
+							if ( file_exists( $image_path ) ) {
+								echo '<div class="item-template">';
+								// phpcs:ignore
+								echo '<img src="' . $image_url . '" alt="Template number ' . $i . ' " data-id="' . $i . '" />';
+								echo '</div>';
+							}
 						}
-					}
-					?>
-				</div>
+						?>
+					</div>
+				</details>
 			</div>
 
 		</div>
 
 		<div id="preview-container" style="display: none;">
+			<a id="download-btn" class="button button-primary" download="<?php esc_attr_e( 'christmas-greeting', 'mwl_christmas' ); // Christmas greeting file name. ?>.jpg"><?php esc_html_e( 'Download Greeting', 'mwl_christmas' ); ?></a>
 			<h3><?php esc_html_e( 'Preview', 'mwl_christmas' ); ?>:</h3>
 			<div id="preview-image"></div>
-			<a id="download-btn" class="button button-primary" download="<?php esc_attr_e( 'christmas-greeting', 'mwl_christmas' ); // Christmas greeting file name. ?>.jpg"><?php esc_html_e( 'Download Greeting', 'mwl_christmas' ); ?></a>
 		</div>
 	</div>
 	<?php
@@ -248,7 +251,6 @@ function mwlc_email_greeting() {
 	$email_to           = sanitize_email( $_POST['email_to'] );
 	$subject            = sanitize_text_field( $_POST['subject'] );
 	$additional_message = sanitize_textarea_field( $_POST['additional_message'] );
-	$image_url          = esc_url_raw( $_POST['image_url'] );
 	$image_path         = sanitize_text_field( $_POST['image_path'] );
 
 	// Check if the email is valid.
@@ -258,7 +260,6 @@ function mwlc_email_greeting() {
 	}
 
 	// Obtain the image and convert it to an attachment.
-	//$image_content = file_get_contents( $image_url ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 	$image_content = file_get_contents( $image_path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 	$image_name    = 'felicitacion-navidad.jpg';
 	$temp_file     = wp_upload_dir()['path'] . '/' . $image_name;
