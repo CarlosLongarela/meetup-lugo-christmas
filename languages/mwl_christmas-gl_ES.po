@@ -1,0 +1,141 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Christmas Greeting Generator\n"
+"POT-Creation-Date: 2024-12-03 17:04+0100\n"
+"PO-Revision-Date: 2024-12-03 17:14+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: gl_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: meetup-lugo-christmas.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: meetup-lugo-christmas.php:44
+msgid "Please, enter a text and select a template"
+msgstr "Por favor, escriba un texto e seleccione unha plantilla"
+
+#: meetup-lugo-christmas.php:45
+msgid "Generating..."
+msgstr "Xerando..."
+
+#: meetup-lugo-christmas.php:46
+msgid "Error generating the greeting"
+msgstr "Erro xerando a felicitación"
+
+#: meetup-lugo-christmas.php:47
+msgid "Connection error"
+msgstr "Erro de conexión"
+
+#: meetup-lugo-christmas.php:48 meetup-lugo-christmas.php:117
+msgid "Generate Greeting"
+msgstr "Xerar felicitación"
+
+#: meetup-lugo-christmas.php:61
+msgid "Christmas Greetings"
+msgstr "Felicitacións de Nadal"
+
+#: meetup-lugo-christmas.php:62
+msgid "Greetings"
+msgstr "Felicitacións"
+
+#: meetup-lugo-christmas.php:77
+msgid "Christmas Greetings Generator"
+msgstr "Xerador de felicitacións de Nadal"
+
+#: meetup-lugo-christmas.php:80
+msgid "Greeting text"
+msgstr "Texto de felicitación"
+
+#: meetup-lugo-christmas.php:81
+msgid ""
+"Meetup WordPress Lugo wish you a Merry Christmas\n"
+"and a Happy New Year!"
+msgstr ""
+"Meetup WordPress Lugo te desexa un Bo Nadal \n"
+"e un feliz ano!"
+
+#: meetup-lugo-christmas.php:85
+msgid "Greeting font"
+msgstr "Fonte da felicitación"
+
+#: meetup-lugo-christmas.php:97
+msgid "Email Recipient"
+msgstr "Destinatario do correo"
+
+#: meetup-lugo-christmas.php:102
+msgid "Subject"
+msgstr "Asunto"
+
+#: meetup-lugo-christmas.php:103
+msgid "Happy Christmas!"
+msgstr "Feliz Nadal!"
+
+#: meetup-lugo-christmas.php:107
+msgid "Additional Message (optional)"
+msgstr "Mensaxe adicional (opcional)"
+
+#: meetup-lugo-christmas.php:112
+msgid "Send Greeting"
+msgstr "Enviar felicitación"
+
+#: meetup-lugo-christmas.php:118
+msgid "Send by Email"
+msgstr "Enviar por correo"
+
+#: meetup-lugo-christmas.php:123
+msgid "Select a template"
+msgstr "Seleccione unha plantilla"
+
+#: meetup-lugo-christmas.php:147
+msgid "christmas-greeting"
+msgstr "felicitacion-nadal"
+
+#: meetup-lugo-christmas.php:147
+msgid "Download Greeting"
+msgstr "Descargar felicitación"
+
+#: meetup-lugo-christmas.php:148
+msgid "Preview"
+msgstr "Previsualización"
+
+#: meetup-lugo-christmas.php:276
+msgid "You have been sent a Christmas greeting!"
+msgstr "Recibiches unha felicitación de Nadal!"
+
+#: meetup-lugo-christmas.php:277
+msgid "The greeting is attached to this email."
+msgstr "A felicitación está adxunta a este correo."
+
+#: meetup-lugo-christmas.php:293
+msgid "Email sent successfully"
+msgstr "Correo enviado con éxito"
+
+#: meetup-lugo-christmas.php:295
+msgid "Error sending email"
+msgstr "Error enviando o correo"
+
+#. Plugin Name of the plugin/theme
+msgid "Christmas Greeting Generator"
+msgstr "Xenerador de felicitacións de nadal"
+
+#. Description of the plugin/theme
+msgid "Plugin to create personalized Christmas cards"
+msgstr "Plugin para crear felicitacións de Nadal personalizadas"
+
+#. Author of the plugin/theme
+msgid "Meetup WordPress Lugo"
+msgstr "Meetup WordPress Lugo"
+
+#. Author URI of the plugin/theme
+msgid "https://wplugo.eu/"
+msgstr "https://wplugo.eu/"
