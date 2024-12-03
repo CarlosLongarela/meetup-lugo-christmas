@@ -14,7 +14,8 @@
 }
 
 .item-template {
-	border: 2px solid transparent;
+	display: flex;
+	border: 4px solid transparent;
 	cursor: pointer;
 	transition: all 0.3s ease;
 }
@@ -25,7 +26,7 @@
 }
 
 .item-template.selected {
-	border-color: var(--mwlc-primary-color);
+	border-color: var(--mwlc-ok-color);
 }
 
 .form-group {

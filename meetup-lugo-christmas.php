@@ -25,7 +25,7 @@ define( 'MWLC_IMAGES_COUNT', 9 );
  * Load plugin textdomain.
  */
 function mwlc_load_textdomain() {
-	load_plugin_textdomain( 'mwl_christmas', false, MWLC_PLUGIN_PATH . 'languages' );
+	load_plugin_textdomain( 'mwl_christmas', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 add_action( 'init', 'mwlc_load_textdomain' );
 
@@ -77,7 +77,7 @@ function mwlc_admin_page() {
 		<h1><?php esc_html_e( 'Christmas Greetings Generator', 'mwl_christmas' ); ?></h1>
 		<div id="christmas-form">
 			<div class="form-group">
-				<label for="greeting-text"><?php esc_html_e( 'Greeting text', 'mwl_christmas' ); ?>:</label>
+				<label for="greeting-text"><h2><?php esc_html_e( 'Greeting text', 'mwl_christmas' ); ?>:</h2></label>
 				<textarea id="greeting-text" name="text" rows="4"></textarea>
 			</div>
 
@@ -140,9 +140,9 @@ function mwlc_admin_page() {
  * @return void
  */
 function mwlc_generate_greeting() {
-	check_ajax_referer( 'greetings_nonce', 'nonce' );
+	check_ajax_referer( 'christmas_nonce', 'nonce' );
 
-	$text        = sanitize_textarea_field( $_POST['texto'] );
+	$text        = sanitize_textarea_field( $_POST['text'] );
 	$template_id = intval( $_POST['template_id'] );
 
 	if ( $template_id > MWLC_IMAGES_COUNT ) {
@@ -155,7 +155,7 @@ function mwlc_generate_greeting() {
 
 	// Configure Font.
 	$font_path = MWLC_PLUGIN_PATH . 'fonts/OpenSans-Bold.ttf';
-	$font_size = 30;
+	$font_size = 60;
 	$color     = imagecolorallocate( $image, 255, 255, 255 ); // White text.
 
 	// Create semitransparent mask for text.
@@ -202,7 +202,7 @@ add_action( 'wp_ajax_generate_greeting', 'mwlc_generate_greeting' );
  * @return void
  */
 function mwlc_email_greeting() {
-	check_ajax_referer( 'mwlc_nonce', 'nonce' );
+	check_ajax_referer( 'christmas_nonce', 'nonce' );
 
 	$email_to           = sanitize_email( $_POST['email_to'] );
 	$subject            = sanitize_text_field( $_POST['subject'] );

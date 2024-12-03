@@ -60,7 +60,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 			form_data.append( 'action', 'generate_greeting' );
 			form_data.append( 'nonce', christmas_ajax_object.nonce );
-			form_data.append( 'texto', text );
+			form_data.append( 'text', text );
 			form_data.append( 'template_id', template_id );
 
 			// Make request
