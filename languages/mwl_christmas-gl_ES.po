@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Christmas Greeting Generator\n"
-"POT-Creation-Date: 2024-12-03 17:04+0100\n"
-"PO-Revision-Date: 2024-12-03 17:14+0100\n"
+"POT-Creation-Date: 2024-12-03 17:56+0100\n"
+"PO-Revision-Date: 2024-12-03 17:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: gl_ES\n"
@@ -36,27 +36,39 @@ msgstr "Erro xerando a felicitación"
 msgid "Connection error"
 msgstr "Erro de conexión"
 
-#: meetup-lugo-christmas.php:48 meetup-lugo-christmas.php:117
+#: meetup-lugo-christmas.php:48 meetup-lugo-christmas.php:119
 msgid "Generate Greeting"
 msgstr "Xerar felicitación"
 
-#: meetup-lugo-christmas.php:61
+#: meetup-lugo-christmas.php:49
+msgid "All fields are required"
+msgstr "Todos os campos son necesarios"
+
+#: meetup-lugo-christmas.php:50
+msgid "Greeting sent successfully"
+msgstr "Felicitación enviada con éxito"
+
+#: meetup-lugo-christmas.php:51
+msgid "Error sending the greeting"
+msgstr "Erro enviando a felicitación"
+
+#: meetup-lugo-christmas.php:63
 msgid "Christmas Greetings"
 msgstr "Felicitacións de Nadal"
 
-#: meetup-lugo-christmas.php:62
+#: meetup-lugo-christmas.php:64
 msgid "Greetings"
 msgstr "Felicitacións"
 
-#: meetup-lugo-christmas.php:77
+#: meetup-lugo-christmas.php:79
 msgid "Christmas Greetings Generator"
 msgstr "Xerador de felicitacións de Nadal"
 
-#: meetup-lugo-christmas.php:80
+#: meetup-lugo-christmas.php:82
 msgid "Greeting text"
 msgstr "Texto de felicitación"
 
-#: meetup-lugo-christmas.php:81
+#: meetup-lugo-christmas.php:83
 msgid ""
 "Meetup WordPress Lugo wish you a Merry Christmas\n"
 "and a Happy New Year!"
@@ -64,63 +76,63 @@ msgstr ""
 "Meetup WordPress Lugo te desexa un Bo Nadal \n"
 "e un feliz ano!"
 
-#: meetup-lugo-christmas.php:85
+#: meetup-lugo-christmas.php:87
 msgid "Greeting font"
 msgstr "Fonte da felicitación"
 
-#: meetup-lugo-christmas.php:97
+#: meetup-lugo-christmas.php:99
 msgid "Email Recipient"
 msgstr "Destinatario do correo"
 
-#: meetup-lugo-christmas.php:102
+#: meetup-lugo-christmas.php:104
 msgid "Subject"
 msgstr "Asunto"
 
-#: meetup-lugo-christmas.php:103
+#: meetup-lugo-christmas.php:105
 msgid "Happy Christmas!"
 msgstr "Feliz Nadal!"
 
-#: meetup-lugo-christmas.php:107
+#: meetup-lugo-christmas.php:109
 msgid "Additional Message (optional)"
 msgstr "Mensaxe adicional (opcional)"
 
-#: meetup-lugo-christmas.php:112
+#: meetup-lugo-christmas.php:114
 msgid "Send Greeting"
 msgstr "Enviar felicitación"
 
-#: meetup-lugo-christmas.php:118
+#: meetup-lugo-christmas.php:120
 msgid "Send by Email"
 msgstr "Enviar por correo"
 
-#: meetup-lugo-christmas.php:123
+#: meetup-lugo-christmas.php:125
 msgid "Select a template"
 msgstr "Seleccione unha plantilla"
 
-#: meetup-lugo-christmas.php:147
+#: meetup-lugo-christmas.php:149
 msgid "christmas-greeting"
 msgstr "felicitacion-nadal"
 
-#: meetup-lugo-christmas.php:147
+#: meetup-lugo-christmas.php:149
 msgid "Download Greeting"
 msgstr "Descargar felicitación"
 
-#: meetup-lugo-christmas.php:148
+#: meetup-lugo-christmas.php:150
 msgid "Preview"
 msgstr "Previsualización"
 
-#: meetup-lugo-christmas.php:276
+#: meetup-lugo-christmas.php:278
 msgid "You have been sent a Christmas greeting!"
 msgstr "Recibiches unha felicitación de Nadal!"
 
-#: meetup-lugo-christmas.php:277
+#: meetup-lugo-christmas.php:279
 msgid "The greeting is attached to this email."
 msgstr "A felicitación está adxunta a este correo."
 
-#: meetup-lugo-christmas.php:293
+#: meetup-lugo-christmas.php:295
 msgid "Email sent successfully"
 msgstr "Correo enviado con éxito"
 
-#: meetup-lugo-christmas.php:295
+#: meetup-lugo-christmas.php:297
 msgid "Error sending email"
 msgstr "Error enviando o correo"
 

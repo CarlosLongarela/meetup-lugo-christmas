@@ -146,7 +146,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		const email_message = document.getElementById( 'email-message' ).value;
 
 		if ( ! email_receipt || ! email_subject || ! current_image_url ) {
-			alert( 'Por favor, completa todos los campos requeridos' );
+			alert( christmas_ajax_object.txt_all_fields );
 
 			return;
 		}
@@ -173,11 +173,11 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			const data = await response.json();
 
 			if ( data.success ) {
-				show_message( '¡Felicitación enviada con éxito!', 'success' );
+				show_message( christmas_ajax_object.txt_send_ok, 'success' );
 				email_form.style.display     = 'none';
 				send_email_btn.style.display = 'none';
 			} else {
-				throw new Error( data.data || 'Error al enviar el email' );
+				throw new Error( data.data || christmas_ajax_object.txt_send_error );
 			}
 		} catch ( error ) {
 			console.error( 'Error:', error );

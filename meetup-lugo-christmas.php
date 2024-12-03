@@ -46,7 +46,9 @@ function mwlc_enqueue_scripts() {
 			'txt_error'            => __( 'Error generating the greeting', 'mwl_christmas' ),
 			'txt_error_connection' => __( 'Connection error', 'mwl_christmas' ),
 			'txt_generate'         => __( 'Generate Greeting', 'mwl_christmas' ),
-
+			'txt_all_fields'       => __( 'All fields are required', 'mwl_christmas' ),
+			'txt_send_ok'          => __( 'Greeting sent successfully', 'mwl_christmas' ),
+			'txt_send_error'       => __( 'Error sending the greeting', 'mwl_christmas' ),
 		)
 	);
 }
@@ -207,7 +209,7 @@ function mwlc_generate_greeting() {
 	}
 
 	// Y position (from where to start drawing).
-	$y = ( $height - $total_height) / 2;
+	$y = ( $height - $total_height ) / 2;
 
 	// Draw every line.
 	foreach ( $lines as $i => $line ) {
