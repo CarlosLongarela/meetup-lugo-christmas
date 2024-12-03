@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'MWLC_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MWLC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'MWLC_VERSION', '1.0.0' );
-define( 'MWLC_IMAGES_COUNT', 8 );
+define( 'MWLC_IMAGES_COUNT', 9 );
 
 /**
  * Load plugin textdomain.
@@ -33,8 +33,8 @@ add_action( 'init', 'mwlc_load_textdomain' );
  * Enqueue scripts and styles.
  */
 function mwlc_enqueue_scripts() {
-	wp_enqueue_style( 'christmas-style', MWLC_PLUGIN_URL . 'css/meetup-lugo-christmas-styles.css' );
-	wp_enqueue_script( 'christmas-script', MWLC_PLUGIN_URL . 'js/script.js', array(), MWLC_VERSION, true );
+	wp_enqueue_style( 'christmas-style', MWLC_PLUGIN_URL . 'css/meetup-lugo-christmas-styles.css', array(), MWLC_VERSION );
+	wp_enqueue_script( 'christmas-script', MWLC_PLUGIN_URL . 'js/meetup-lugo-christmas-script.js', array(), MWLC_VERSION, true );
 	wp_localize_script(
 		'christmas-script',
 		'christmas_ajax_object',
@@ -88,11 +88,12 @@ function mwlc_admin_page() {
 					for ( $i = 1; $i <= MWLC_IMAGES_COUNT; $i++ ) {
 						// Check if image exists.
 						$image_path = MWLC_PLUGIN_PATH . 'images/template-' . $i . '.jpg';
+						$image_url  = MWLC_PLUGIN_URL . 'images/template-' . $i . '.jpg';
 
 						if ( file_exists( $image_path ) ) {
 							echo '<div class="item-template">';
 							// phpcs:ignore
-							echo '<img src="' . $image_path . '" alt="Template number ' . $i . ' " data-id="' . $i . '" />';
+							echo '<img src="' . $image_url . '" alt="Template number ' . $i . ' " data-id="' . $i . '" />';
 							echo '</div>';
 						}
 					}

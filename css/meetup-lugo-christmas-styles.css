@@ -13,18 +13,18 @@
 	margin: 20px 0;
 }
 
-.template-item {
+.item-template {
 	border: 2px solid transparent;
 	cursor: pointer;
 	transition: all 0.3s ease;
 }
 
-.template-item img {
+.item-template img {
 	width: 100%;
 	height: auto;
 }
 
-.template-item.selected {
+.item-template.selected {
 	border-color: var(--mwlc-primary-color);
 }
 
