@@ -78,7 +78,44 @@ function mwlc_admin_page() {
 		<div id="christmas-form">
 			<div class="form-group">
 				<label for="greeting-text"><h2><?php esc_html_e( 'Greeting text', 'mwl_christmas' ); ?>:</h2></label>
-				<textarea id="greeting-text" name="text" rows="4"></textarea>
+				<textarea id="greeting-text" name="text" rows="4"><?php esc_html_e( "Meetup WordPress Lugo wish you a Merry Christmas\nand a Happy New Year!", 'mwl_christmas' ); ?></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="greeting-font"><h2><?php esc_html_e( 'Greeting font', 'mwl_christmas' ); ?>:</h2></label>
+				<select name="font" id="greeting-font">
+					<option value="OpenSans-Bold.ttf">Open Sans</option>
+					<option value="Pacifico-Regular.ttf" selected>Pacifico</option>
+					<option value="Molle-Italic.ttf">Molle</option>
+					<option value="CraftyGirls-Regular.ttf">Crafty Girls</option>
+					<option value="Bonbon-Regular.ttf">Bonbon</option>
+				</select>
+			</div>
+
+			<div id="email-form" style="display: none;">
+				<div class="form-group">
+					<label for="email-recipient"><?php esc_html_e( 'Email Recipient', 'mwl_christmas' ); ?>:</label>
+					<input type="email" id="email-recipient" name="email_recipient" required>
+				</div>
+
+				<div class="form-group">
+					<label for="email-subject"><?php esc_html_e( 'Subject', 'mwl_christmas' ); ?>:</label>
+					<input type="text" id="email-subject" name="email_subject" value="<?php esc_attr_e( 'Happy Christmas!', 'mwl_christmas' ); ?>" required>
+				</div>
+
+				<div class="form-group">
+					<label for="email-message"><?php esc_html_e( 'Additional Message (optional)', 'mwl_christmas' ); ?>:</label>
+					<textarea id="email-message" name="email_message" rows="3"></textarea>
+				</div>
+
+				<div class="form-group">
+					<button id="send-email" class="button button-primary" style="display: none;"><?php esc_html_e( 'Send Greeting', 'mwl_christmas' ); ?></button>
+				</div>
+			</div>
+
+			<div class="button-group">
+				<button id="generate-greeting" class="button button-primary"><?php esc_html_e( 'Generate Greeting', 'mwl_christmas' ); ?></button>
+				<button id="show-email" class="button" style="display: none;"><?php esc_html_e( 'Send by Email', 'mwl_christmas' ); ?></button>
 			</div>
 
 			<div class="form-group">
@@ -101,28 +138,6 @@ function mwlc_admin_page() {
 				</div>
 			</div>
 
-			<div id="email-form" style="display: none;">
-				<div class="form-group">
-					<label for="email-recipient"><?php esc_html_e( 'Email Recipient', 'mwl_christmas' ); ?>:</label>
-					<input type="email" id="email-recipient" name="email_recipient" required>
-				</div>
-
-				<div class="form-group">
-					<label for="email-subject"><?php esc_html_e( 'Subject', 'mwl_christmas' ); ?>:</label>
-					<input type="text" id="email-subject" name="email_subject" value="<?php esc_attr_e( 'Happy Christmas!', 'mwl_christmas' ); ?>" required>
-				</div>
-
-				<div class="form-group">
-					<label for="email-message"><?php esc_html_e( 'Additional Message (optional)', 'mwl_christmas' ); ?>:</label>
-					<textarea id="email-message" name="email_message" rows="3"></textarea>
-				</div>
-			</div>
-
-			<div class="button-group">
-				<button id="generate-greeting" class="button button-primary"><?php esc_html_e( 'Generate Greeting', 'mwl_christmas' ); ?></button>
-				<button id="show-email" class="button" style="display: none;"><?php esc_html_e( 'Send by Email', 'mwl_christmas' ); ?></button>
-				<button id="send-email" class="button button-primary" style="display: none;"><?php esc_html_e( 'Send Greeting', 'mwl_christmas' ); ?></button>
-			</div>
 		</div>
 
 		<div id="preview-container" style="display: none;">
@@ -144,6 +159,11 @@ function mwlc_generate_greeting() {
 
 	$text        = sanitize_textarea_field( $_POST['text'] );
 	$template_id = intval( $_POST['template_id'] );
+	$font        = sanitize_text_field( $_POST['font'] );
+
+	if ( empty( $font ) ) {
+		$font = 'OpenSans-Bold.ttf';
+	}
 
 	if ( $template_id > MWLC_IMAGES_COUNT ) {
 		$template_id = 1;
@@ -154,7 +174,7 @@ function mwlc_generate_greeting() {
 	$image         = imagecreatefromjpeg( $template_path );
 
 	// Configure Font.
-	$font_path = MWLC_PLUGIN_PATH . 'fonts/OpenSans-Bold.ttf';
+	$font_path = MWLC_PLUGIN_PATH . 'fonts/' . $font;
 	$font_size = 60;
 	$color     = imagecolorallocate( $image, 255, 255, 255 ); // White text.
 
@@ -203,9 +223,15 @@ function mwlc_generate_greeting() {
 	imagedestroy( $image );
 	imagedestroy( $mask );
 
-	// Return image URL.
-	$image_url = wp_upload_dir()['url'] . '/temp_greeting_' . time() . '.jpg';
-	wp_send_json_success( array( 'url' => $image_url ) );
+	// Return image URL and Path.
+	$image_url  = wp_upload_dir()['url'] . '/temp_greeting_' . time() . '.jpg';
+	$image_path = wp_upload_dir()['path'] . '/temp_greeting_' . time() . '.jpg';
+	wp_send_json_success(
+		array(
+			'url'  => $image_url,
+			'path' => $image_path,
+		)
+	);
 
 	wp_die();
 }
@@ -223,6 +249,7 @@ function mwlc_email_greeting() {
 	$subject            = sanitize_text_field( $_POST['subject'] );
 	$additional_message = sanitize_textarea_field( $_POST['additional_message'] );
 	$image_url          = esc_url_raw( $_POST['image_url'] );
+	$image_path         = sanitize_text_field( $_POST['image_path'] );
 
 	// Check if the email is valid.
 	if ( ! is_email( $email_to ) ) {
@@ -231,7 +258,8 @@ function mwlc_email_greeting() {
 	}
 
 	// Obtain the image and convert it to an attachment.
-	$image_content = file_get_contents( $image_url ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	//$image_content = file_get_contents( $image_url ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	$image_content = file_get_contents( $image_path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 	$image_name    = 'felicitacion-navidad.jpg';
 	$temp_file     = wp_upload_dir()['path'] . '/' . $image_name;
 

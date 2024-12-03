@@ -13,6 +13,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	const send_email_btn    = document.getElementById( 'send-email' );
 	const email_input       = document.getElementById( 'email-recipient' );
 	let current_image_url   = null;
+	let current_image_path  = null;
 
 	// Functions to display messages
 	function show_message( message, message_type ) {
@@ -43,6 +44,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		const text              = text_input.value;
 		const selected_template = document.querySelector( '.item-template.selected img' );
 		const template_id       = selected_template ? selected_template.dataset.id : null;
+		const font              = document.getElementById( 'greeting-font' ).value;
 
 		if ( ! text || ! template_id ) {
 			alert( christmas_ajax_object.txt_error_enter );
@@ -61,6 +63,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			form_data.append( 'action', 'generate_greeting' );
 			form_data.append( 'nonce', christmas_ajax_object.nonce );
 			form_data.append( 'text', text );
+			form_data.append( 'font', font );
 			form_data.append( 'template_id', template_id );
 
 			// Make request
@@ -86,6 +89,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				download_btn.href               = data.data.url;
 				show_email_btn.style.display    = 'block';
 				current_image_url               = data.data.url;
+				current_image_path              = data.data.path;
 
 			} else {
 				throw new Error( christmas_ajax_object.txt_error );
@@ -157,6 +161,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			formData.append( 'subject', email_subject );
 			formData.append( 'additional_message', email_message );
 			formData.append( 'imagen_url', current_image_url );
+			formData.append( 'image_path', current_image_path );
 
 			const response = await fetch( christmas_ajax_object.ajaxurl, {
 				method:      'POST',
