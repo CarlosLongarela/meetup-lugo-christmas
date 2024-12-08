@@ -5,10 +5,12 @@
  * Version: 1.0
  * Author: Meetup WordPress Lugo
  * Author URI: https://wplugo.eu/
- * Text Domain: mwl_christmas
+ * Text Domain: meetup-lugo-christmas
  * Domain Path: /languages
+ * License: GPL2
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  *
- * @package mwl_christmas
+ * @package meetup-lugo-christmas
  */
 
 // Avoid direct access to file.
@@ -25,7 +27,7 @@ define( 'MWLC_IMAGES_COUNT', 9 );
  * Load plugin textdomain.
  */
 function mwlc_load_textdomain() {
-	load_plugin_textdomain( 'mwl_christmas', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'meetup-lugo-christmas', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 add_action( 'init', 'mwlc_load_textdomain' );
 
@@ -41,14 +43,14 @@ function mwlc_enqueue_scripts() {
 		array(
 			'ajaxurl'              => admin_url( 'admin-ajax.php' ),
 			'nonce'                => wp_create_nonce( 'christmas_nonce' ),
-			'txt_error_enter'      => __( 'Please, enter a text and select a template', 'mwl_christmas' ),
-			'txt_generating'       => __( 'Generating...', 'mwl_christmas' ),
-			'txt_error'            => __( 'Error generating the greeting', 'mwl_christmas' ),
-			'txt_error_connection' => __( 'Connection error', 'mwl_christmas' ),
-			'txt_generate'         => __( 'Generate Greeting', 'mwl_christmas' ),
-			'txt_all_fields'       => __( 'All fields are required', 'mwl_christmas' ),
-			'txt_send_ok'          => __( 'Greeting sent successfully', 'mwl_christmas' ),
-			'txt_send_error'       => __( 'Error sending the greeting', 'mwl_christmas' ),
+			'txt_error_enter'      => __( 'Please, enter a text and select a template', 'meetup-lugo-christmas' ),
+			'txt_generating'       => __( 'Generating...', 'meetup-lugo-christmas' ),
+			'txt_error'            => __( 'Error generating the greeting', 'meetup-lugo-christmas' ),
+			'txt_error_connection' => __( 'Connection error', 'meetup-lugo-christmas' ),
+			'txt_generate'         => __( 'Generate Greeting', 'meetup-lugo-christmas' ),
+			'txt_all_fields'       => __( 'All fields are required', 'meetup-lugo-christmas' ),
+			'txt_send_ok'          => __( 'Greeting sent successfully', 'meetup-lugo-christmas' ),
+			'txt_send_error'       => __( 'Error sending the greeting', 'meetup-lugo-christmas' ),
 		)
 	);
 }
@@ -60,8 +62,8 @@ add_action( 'admin_enqueue_scripts', 'mwlc_enqueue_scripts' );
  */
 function mwlc_menu() {
 	add_menu_page(
-		__( 'Christmas Greetings', 'mwl_christmas' ),
-		__( 'Greetings', 'mwl_christmas' ),
+		__( 'Christmas Greetings', 'meetup-lugo-christmas' ),
+		__( 'Greetings', 'meetup-lugo-christmas' ),
 		'manage_options',
 		'christmas',
 		'mwlc_admin_page',
@@ -76,15 +78,15 @@ add_action( 'admin_menu', 'mwlc_menu' );
 function mwlc_admin_page() {
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Christmas Greetings Generator', 'mwl_christmas' ); ?></h1>
+		<h1><?php esc_html_e( 'Christmas Greetings Generator', 'meetup-lugo-christmas' ); ?></h1>
 		<div id="christmas-form">
 			<div class="form-group">
-				<label for="greeting-text"><h2><?php esc_html_e( 'Greeting text', 'mwl_christmas' ); ?>:</h2></label>
-				<textarea id="greeting-text" name="text" rows="4"><?php esc_html_e( "Meetup WordPress Lugo wish you a Merry Christmas\nand a Happy New Year!", 'mwl_christmas' ); ?></textarea>
+				<label for="greeting-text"><h2><?php esc_html_e( 'Greeting text', 'meetup-lugo-christmas' ); ?>:</h2></label>
+				<textarea id="greeting-text" name="text" rows="4"><?php esc_html_e( "Meetup WordPress Lugo wish you a Merry Christmas\nand a Happy New Year!", 'meetup-lugo-christmas' ); ?></textarea>
 			</div>
 
 			<div class="form-group">
-				<label for="greeting-font"><h2><?php esc_html_e( 'Greeting font', 'mwl_christmas' ); ?>:</h2></label>
+				<label for="greeting-font"><h2><?php esc_html_e( 'Greeting font', 'meetup-lugo-christmas' ); ?>:</h2></label>
 				<select name="font" id="greeting-font">
 					<option value="OpenSans-Bold.ttf">Open Sans</option>
 					<option value="Pacifico-Regular.ttf" selected>Pacifico</option>
@@ -96,33 +98,33 @@ function mwlc_admin_page() {
 
 			<div id="email-form" style="display: none;">
 				<div class="form-group">
-					<label for="email-recipient"><?php esc_html_e( 'Email Recipient', 'mwl_christmas' ); ?>:</label>
+					<label for="email-recipient"><?php esc_html_e( 'Email Recipient', 'meetup-lugo-christmas' ); ?>:</label>
 					<input type="email" id="email-recipient" name="email_recipient" required>
 				</div>
 
 				<div class="form-group">
-					<label for="email-subject"><?php esc_html_e( 'Subject', 'mwl_christmas' ); ?>:</label>
-					<input type="text" id="email-subject" name="email_subject" value="<?php esc_attr_e( 'Happy Christmas!', 'mwl_christmas' ); ?>" required>
+					<label for="email-subject"><?php esc_html_e( 'Subject', 'meetup-lugo-christmas' ); ?>:</label>
+					<input type="text" id="email-subject" name="email_subject" value="<?php esc_attr_e( 'Happy Christmas!', 'meetup-lugo-christmas' ); ?>" required>
 				</div>
 
 				<div class="form-group">
-					<label for="email-message"><?php esc_html_e( 'Additional Message (optional)', 'mwl_christmas' ); ?>:</label>
+					<label for="email-message"><?php esc_html_e( 'Additional Message (optional)', 'meetup-lugo-christmas' ); ?>:</label>
 					<textarea id="email-message" name="email_message" rows="4"></textarea>
 				</div>
 
 				<div class="form-group">
-					<button id="send-email" class="button button-primary"><?php esc_html_e( 'Send Greeting', 'mwl_christmas' ); ?></button>
+					<button id="send-email" class="button button-primary"><?php esc_html_e( 'Send Greeting', 'meetup-lugo-christmas' ); ?></button>
 				</div>
 			</div>
 
 			<div class="button-group">
-				<button id="generate-greeting" class="button button-primary"><?php esc_html_e( 'Generate Greeting', 'mwl_christmas' ); ?></button>
-				<button id="show-email" class="button" style="display: none;"><?php esc_html_e( 'Send by Email', 'mwl_christmas' ); ?></button>
+				<button id="generate-greeting" class="button button-primary"><?php esc_html_e( 'Generate Greeting', 'meetup-lugo-christmas' ); ?></button>
+				<button id="show-email" class="button" style="display: none;"><?php esc_html_e( 'Send by Email', 'meetup-lugo-christmas' ); ?></button>
 			</div>
 
 			<div class="form-group">
 				<details id="details-templates" open>
-					<summary><h2 class="sumary-title"><?php esc_html_e( 'Select a template', 'mwl_christmas' ); ?>:</h2></summary>
+					<summary><h2 class="sumary-title"><?php esc_html_e( 'Select a template', 'meetup-lugo-christmas' ); ?>:</h2></summary>
 
 					<div class="grid-template">
 						<?php
@@ -146,8 +148,8 @@ function mwlc_admin_page() {
 		</div>
 
 		<div id="preview-container" style="display: none;">
-			<a id="download-btn" class="button button-primary" download="<?php esc_attr_e( 'christmas-greeting', 'mwl_christmas' ); // Christmas greeting file name. ?>.jpg"><?php esc_html_e( 'Download Greeting', 'mwl_christmas' ); ?></a>
-			<h3><?php esc_html_e( 'Preview', 'mwl_christmas' ); ?>:</h3>
+			<a id="download-btn" class="button button-primary" download="<?php esc_attr_e( 'christmas-greeting', 'meetup-lugo-christmas' ); // Christmas greeting file name. ?>.jpg"><?php esc_html_e( 'Download Greeting', 'meetup-lugo-christmas' ); ?></a>
+			<h3><?php esc_html_e( 'Preview', 'meetup-lugo-christmas' ); ?>:</h3>
 			<div id="preview-image"></div>
 		</div>
 	</div>
@@ -275,8 +277,8 @@ function mwlc_email_greeting() {
 		<html>
 		<body>
 			<p>%s</p>
-			<p>' . __( 'You have been sent a Christmas greeting!', 'mwl_christmas' ) . '</p>
-			<p style="color: #666; font-style: italic;">' . __( 'The greeting is attached to this email.', 'mwl_christmas' ) . '</p>
+			<p>' . __( 'You have been sent a Christmas greeting!', 'meetup-lugo-christmas' ) . '</p>
+			<p style="color: #666; font-style: italic;">' . __( 'The greeting is attached to this email.', 'meetup-lugo-christmas' ) . '</p>
 		</body>
 		</html>',
 		nl2br( $additional_message )
@@ -292,9 +294,9 @@ function mwlc_email_greeting() {
 	unlink( $temp_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 
 	if ( $mail_sent ) {
-		wp_send_json_success( __( 'Email sent successfully', 'mwl_christmas' ) );
+		wp_send_json_success( __( 'Email sent successfully', 'meetup-lugo-christmas' ) );
 	} else {
-		wp_send_json_error( __( 'Error sending email', 'mwl_christmas' ) );
+		wp_send_json_error( __( 'Error sending email', 'meetup-lugo-christmas' ) );
 	}
 
 	wp_die();
