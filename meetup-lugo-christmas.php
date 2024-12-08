@@ -164,12 +164,22 @@ function mwlc_admin_page() {
 function mwlc_generate_greeting() {
 	check_ajax_referer( 'christmas_nonce', 'nonce' );
 
-	$text        = sanitize_textarea_field( $_POST['text'] );
-	$template_id = intval( $_POST['template_id'] );
-	$font        = sanitize_text_field( $_POST['font'] );
+	if ( empty( $_POST['text'] ) ) {
+		wp_send_json_error( __( 'Text field is required', 'meetup-lugo-christmas' ) );
+	} else {
+		$text = sanitize_textarea_field( wp_unslash( $_POST['text'] ) );
+	}
 
-	if ( empty( $font ) ) {
+	if ( empty( $_POST['template_id'] ) ) {
+		$template_id = 1;
+	} else {
+		$template_id = intval( $_POST['template_id'] );
+	}
+
+	if ( empty( $_POST['font'] ) ) {
 		$font = 'OpenSans-Bold.ttf';
+	} else {
+		$font = sanitize_text_field( wp_unslash( $_POST['font'] ) );
 	}
 
 	if ( $template_id > MWLC_IMAGES_COUNT ) {
@@ -252,10 +262,10 @@ add_action( 'wp_ajax_generate_greeting', 'mwlc_generate_greeting' );
 function mwlc_email_greeting() {
 	check_ajax_referer( 'christmas_nonce', 'nonce' );
 
-	$email_to           = sanitize_email( $_POST['email_to'] );
-	$subject            = sanitize_text_field( $_POST['subject'] );
-	$additional_message = sanitize_textarea_field( $_POST['additional_message'] );
-	$image_path         = sanitize_text_field( $_POST['image_path'] );
+	$email_to           = isset( $_POST['email_to'] ) ? sanitize_email( wp_unslash( $_POST['email_to'] ) ) : '';
+	$subject            = isset( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : '';
+	$additional_message = isset( $_POST['additional_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['additional_message'] ) ) : '';
+	$image_path         = isset( $_POST['image_path'] ) ? sanitize_text_field( wp_unslash( $_POST['image_path'] ) ) : '';
 
 	// Check if the email is valid.
 	if ( ! is_email( $email_to ) ) {
