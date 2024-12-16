@@ -128,3 +128,46 @@
 @keyframes spin {
 	to { transform: rotate(360deg); }
 }
+
+/* Frontend specific styles */
+.mwlc-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.mwlc-wrap .button {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--mwlc-primary-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.mwlc-wrap .button:hover {
+    opacity: 0.9;
+}
+
+.mwlc-wrap #greeting-text,
+.mwlc-wrap #greeting-font {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+/* Responsive grid for frontend */
+@media (max-width: 768px) {
+    .mwlc-wrap .grid-template {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .mwlc-wrap .grid-template {
+        grid-template-columns: 1fr;
+    }
+}
