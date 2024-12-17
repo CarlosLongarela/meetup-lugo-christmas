@@ -234,7 +234,7 @@ function mwlc_generate_greeting() {
 
 	// Save image temporarily.
 	$temp_file = wp_upload_dir()['path'] . '/temp_greeting_' . time() . '.jpg';
-	imagejpeg( $image, $temp_file, 90 );
+	imagejpeg( $image, $temp_file, 75 );
 
 	// Clean memory.
 	imagedestroy( $image );
@@ -253,6 +253,7 @@ function mwlc_generate_greeting() {
 	wp_die();
 }
 add_action( 'wp_ajax_generate_greeting', 'mwlc_generate_greeting' );
+add_action( 'wp_ajax_nopriv_generate_greeting', 'mwlc_generate_greeting' );
 
 /**
  * Send a greeting email.
@@ -312,3 +313,14 @@ function mwlc_email_greeting() {
 	wp_die();
 }
 add_action( 'wp_ajax_send_greeting_email', 'mwlc_email_greeting' );
+add_action( 'wp_ajax_nopriv_send_greeting_email', 'mwlc_email_greeting' );
+
+/**
+ * Create shortcode for frontend use
+ */
+function mwlc_shortcode() {
+	ob_start();
+	mwlc_admin_page();
+	return ob_get_clean();
+}
+add_shortcode( 'christmas_greeting', 'mwlc_shortcode' );

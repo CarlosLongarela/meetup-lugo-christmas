@@ -175,7 +175,6 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			if ( data.success ) {
 				show_message( christmas_ajax_object.txt_send_ok, 'success' );
 				email_form.style.display     = 'none';
-				send_email_btn.style.display = 'none';
 			} else {
 				throw new Error( data.data || christmas_ajax_object.txt_send_error );
 			}

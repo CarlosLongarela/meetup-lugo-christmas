@@ -171,3 +171,30 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Ajustes específicos para frontend */
+.entry-content .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.entry-content #christmas-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .entry-content .grid-template {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .entry-content .grid-template {
+        grid-template-columns: 1fr;
+    }
+}
