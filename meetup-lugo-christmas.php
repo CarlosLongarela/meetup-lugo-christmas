@@ -234,7 +234,7 @@ function mwlc_generate_greeting() {
 
 	// Save image temporarily.
 	$temp_file = wp_upload_dir()['path'] . '/temp_greeting_' . time() . '.jpg';
-	imagejpeg( $image, $temp_file, 75 );
+	imagejpeg( $image, $temp_file, 70 );
 
 	// Clean memory.
 	imagedestroy( $image );
