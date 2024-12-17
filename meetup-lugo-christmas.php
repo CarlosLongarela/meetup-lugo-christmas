@@ -54,7 +54,6 @@ function mwlc_enqueue_scripts() {
 		)
 	);
 }
-add_action( 'wp_enqueue_scripts', 'mwlc_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'mwlc_enqueue_scripts' );
 
 /**
@@ -319,6 +318,8 @@ add_action( 'wp_ajax_nopriv_send_greeting_email', 'mwlc_email_greeting' );
  * Create shortcode for frontend use
  */
 function mwlc_shortcode() {
+	add_action( 'wp_enqueue_scripts', 'mwlc_enqueue_scripts' );
+
 	ob_start();
 	mwlc_admin_page();
 	return ob_get_clean();
