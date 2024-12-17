@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Christmas Greeting Generator
  * Description: Plugin to create personalized Christmas cards
- * Version: 1.0
+ * Version: 1.2
  * Author: Meetup WordPress Lugo
  * Author URI: https://wplugo.eu/
  * Text Domain: meetup-lugo-christmas
