@@ -65,7 +65,7 @@ function mwlc_menu() {
 		__( 'Greetings', 'meetup-lugo-christmas' ),
 		'manage_options',
 		'christmas',
-		'mwlc_admin_page',
+		'mwlc_greeting_form_page',
 		'dashicons-images-alt2'
 	);
 }
@@ -74,14 +74,17 @@ add_action( 'admin_menu', 'mwlc_menu' );
 /**
  * Form to generate Christmas greetings.
  */
-function mwlc_admin_page() {
+function mwlc_greeting_form_page( $default_message = '' ) {
+	if ( empty( $default_message ) ) {
+		$default_message = __( 'Meetup WordPress Lugo wish you a Merry Christmas\nand a Happy New Year!', 'meetup-lugo-christmas' );
+	}
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Christmas Greetings Generator', 'meetup-lugo-christmas' ); ?></h1>
 		<div id="christmas-form">
 			<div class="form-group">
 				<label for="greeting-text"><h2><?php esc_html_e( 'Greeting text', 'meetup-lugo-christmas' ); ?>:</h2></label>
-				<textarea id="greeting-text" name="text" rows="4"><?php esc_html_e( "Meetup WordPress Lugo wish you a Merry Christmas\nand a Happy New Year!", 'meetup-lugo-christmas' ); ?></textarea>
+				<textarea id="greeting-text" name="text" rows="4"><?php echo esc_textarea( $default_message ); ?></textarea>
 			</div>
 
 			<div class="form-group">
@@ -316,12 +319,22 @@ add_action( 'wp_ajax_nopriv_send_greeting_email', 'mwlc_email_greeting' );
 
 /**
  * Create shortcode for frontend use
+ *
+ * @param array $atts Shortcode attributes.
  */
-function mwlc_shortcode() {
+function mwlc_shortcode( $atts) {
+	// Parse attributes.
+	$defaults = array(
+		'message' => '',
+	);
+
+	$atts = shortcode_atts( $defaults, $atts, 'christmas_greeting' );
+
 	mwlc_enqueue_scripts();
 
 	ob_start();
-	mwlc_admin_page();
+	mwlc_greeting_form_page( $atts['message'] );
+
 	return ob_get_clean();
 }
 add_shortcode( 'christmas_greeting', 'mwlc_shortcode' );
