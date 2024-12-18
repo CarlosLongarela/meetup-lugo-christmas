@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Christmas Greeting Generator
  * Description: Plugin to create personalized Christmas cards
- * Version: 1.2
+ * Version: 1.2.1
  * Author: Meetup WordPress Lugo
  * Author URI: https://wplugo.eu/
  * Text Domain: meetup-lugo-christmas
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'MWLC_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MWLC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'MWLC_VERSION', '1.2.0' );
+define( 'MWLC_VERSION', '1.2.1' );
 define( 'MWLC_IMAGES_COUNT', 9 );
 
 /**
@@ -318,7 +318,7 @@ add_action( 'wp_ajax_nopriv_send_greeting_email', 'mwlc_email_greeting' );
  * Create shortcode for frontend use
  */
 function mwlc_shortcode() {
-	add_action( 'wp_enqueue_scripts', 'mwlc_enqueue_scripts' );
+	mwlc_enqueue_scripts();
 
 	ob_start();
 	mwlc_admin_page();
