@@ -322,7 +322,7 @@ add_action( 'wp_ajax_nopriv_send_greeting_email', 'mwlc_email_greeting' );
  *
  * @param array $atts Shortcode attributes.
  */
-function mwlc_shortcode( $atts) {
+function mwlc_shortcode( $atts ) {
 	// Parse attributes.
 	$defaults = array(
 		'message' => '',
