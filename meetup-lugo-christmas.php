@@ -73,6 +73,8 @@ add_action( 'admin_menu', 'mwlc_menu' );
 
 /**
  * Form to generate Christmas greetings.
+ *
+ * @param string $default_message Default message to show in the textarea.
  */
 function mwlc_greeting_form_page( $default_message = '' ) {
 	if ( empty( $default_message ) ) {
